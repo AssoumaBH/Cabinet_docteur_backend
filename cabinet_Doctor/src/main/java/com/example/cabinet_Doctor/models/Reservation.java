@@ -10,26 +10,26 @@ public class Reservation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @JsonProperty("birth")
-    private String date;
+ //   @JsonProperty("birth")
+    private String birth;
     private String time;
-    @JsonProperty("name")
-    private String NPatient;
-    @JsonProperty("nameDoct")
-    private String NDoct;
-    @JsonProperty("description")
-    private String Description;
+    //@JsonProperty("name")
+    private String name;
+   // @JsonProperty("nameDoct")
+    private String nameDoct;
+   // @JsonProperty("description")
+    private String description;
 
     public Reservation() {
     }
 
-    public Reservation(int id, String date, String time, String NPatient, String NDoct, String description) {
+    public Reservation(int id, String birth, String time, String name, String nameDoct, String description) {
         this.id = id;
-        this.date = date;
+        this.birth = birth;
         this.time = time;
-        this.NPatient = NPatient;
-        this.NDoct = NDoct;
-        Description = description;
+        this.name = name;
+        this.nameDoct = nameDoct;
+        this.description = description;
     }
 
     public int getId() {
@@ -40,12 +40,12 @@ public class Reservation implements Serializable {
         this.id = id;
     }
 
-    public String getDate() {
-        return date;
+    public String getBirth() {
+        return birth;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setBirth(String birth) {
+        this.birth = birth;
     }
 
     public String getTime() {
@@ -56,27 +56,27 @@ public class Reservation implements Serializable {
         this.time = time;
     }
 
-    public String getNPatient() {
-        return NPatient;
+    public String getName() {
+        return name;
     }
 
-    public void setNPatient(String NPatient) {
-        this.NPatient = NPatient;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getNDoct() {
-        return NDoct;
+    public String getNameDoct() {
+        return nameDoct;
     }
 
-    public void setNDoct(String NDoct) {
-        this.NDoct = NDoct;
+    public void setNameDoct(String nameDoct) {
+        this.nameDoct = nameDoct;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 }

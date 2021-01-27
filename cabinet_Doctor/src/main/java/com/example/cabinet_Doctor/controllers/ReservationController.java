@@ -9,11 +9,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@RestController("re")
 public class ReservationController {
 
     @Autowired
-private ReservationDetailsService reservationService;
+    private ReservationDetailsService reservationService;
 
 
     @GetMapping( "/reservation/{id}")

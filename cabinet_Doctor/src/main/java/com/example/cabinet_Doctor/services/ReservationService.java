@@ -3,9 +3,10 @@ package com.example.cabinet_Doctor.services;
 import com.example.cabinet_Doctor.models.Reservation;
 import com.example.cabinet_Doctor.repositories.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class ReservationService implements ReservationDetailsService {
 
     @Autowired
