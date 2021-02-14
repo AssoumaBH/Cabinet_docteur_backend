@@ -1,9 +1,19 @@
 package com.example.cabinet_Doctor.models;
 
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
+@Data
 public class Patient implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,114 +24,33 @@ public class Patient implements Serializable {
     private String sexe;
     private String adresse;
     private int tel;
-    private int NumCNSS;
+    private String numCNSS;
     private String email;
     private String password;
-    @OneToOne
-    private Role role;
 
-    public Patient() {
-    }
+//    @OneToOne
+//    private Role role;
 
-    public Patient(int id, String nom, String prenom, String dateNaissance, String sexe, String adresse, int tel, int numCNSS, String email, String password, Role role) {
-        this.id = id;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.dateNaissance = dateNaissance;
-        this.sexe = sexe;
-        this.adresse = adresse;
-        this.tel = tel;
-        this.NumCNSS=numCNSS;
-        this.email = email;
-        this.password = password;
-        this.role = role;
-    }
+    // ManyToMany relationship
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(	name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 
-    public Role getRole() {
-        return role;
-    }
 
-    public void setRole(Role role) {
-        this.role = role;
-    }
+    @Setter(value = AccessLevel.NONE)
+    @Basic(optional = false)
+    @CreationTimestamp
+    @Column(name = "created_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt = new Date();
 
-    public int getId() {
-        return id;
-    }
+    @Setter(value = AccessLevel.NONE)
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updatedAt = new Date();
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public String getDateNaissance() {
-        return dateNaissance;
-    }
-
-    public void setDateNaissance(String dateNaissance) {
-        this.dateNaissance = dateNaissance;
-    }
-
-    public String getSexe() {
-        return sexe;
-    }
-
-    public void setSexe(String sexe) {
-        this.sexe = sexe;
-    }
-
-    public String getAdresse() {
-        return adresse;
-    }
-
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
-
-    public int getTel() {
-        return tel;
-    }
-
-    public void setTel(int tel) {
-        this.tel = tel;
-    }
-
-    public int getNumCNSS() {
-        return NumCNSS;
-    }
-
-    public void setNumCNSS(int numCNSS) {
-        NumCNSS = numCNSS;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

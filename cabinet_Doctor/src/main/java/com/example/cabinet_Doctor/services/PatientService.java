@@ -14,6 +14,7 @@ public class PatientService implements PatientDetailsService {
     private PatientRepository patientRepository;
 
     @Override
+
     public List<Patient> getAll() {
         List<Patient> list = new ArrayList<>();
         patientRepository.findAll().iterator().forEachRemaining(list::add);
@@ -21,7 +22,7 @@ public class PatientService implements PatientDetailsService {
     }
 
     @Override
-    public Patient save(Patient patient) {
+    public Patient savep(Patient patient) {
         return patientRepository.save(patient);
     }
 
@@ -37,6 +38,19 @@ public class PatientService implements PatientDetailsService {
         return patientRepository.findById(id);
 
     }
+//    public Patient updatePatient(int id, Patient patient) {
+//        Patient existingUser = patientRepository.findById(id).orElse(null);
+//        if(existingUser != null)
+//        {
+//            existingUser.setFirstName(user.getFirstName());
+//            existingUser.setLastName(user.getLastName());
+//            existingUser.setEmail(user.getEmail());
+//            existingUser.setPassword(user.getPassword());
+//            existingUser.setAge(user.getAge());
+//        }
+//        return userRepository.save(existingUser);
+//    }
+
 
 //  @Override
 //    public Patient updatePatient(int id, Patient patient) {
@@ -45,6 +59,7 @@ public class PatientService implements PatientDetailsService {
 //      updatePatient.setPrenom(patient.getPrenom());
 //      updatePatient.setPassword(patient.getPassword());
 //      updatePatient.setAdresse(patient.getAdresse());
+
 //      updatePatient.setSexe(patient.getSexe());
 //      updatePatient.setEmail(patient.getEmail());
 //      updatePatient.setDateNaissance(patient.getDateNaissance());

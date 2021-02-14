@@ -9,25 +9,26 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@RestController("re")
+@RestController
+@RequestMapping(value = "/reservations")
 public class ReservationController {
 
     @Autowired
     private ReservationDetailsService reservationService;
 
 
-    @GetMapping( "/reservation/{id}")
+    @GetMapping("/{id}")
     public Reservation getOne(@PathVariable(value = "id") int id){
         return reservationService.findById(id);
     }
 
 
-    @GetMapping(value="/reservation")
+    @GetMapping("/")
     public List<Reservation> listReservation(){
         return reservationService.getAll();
     }
 
-    @PostMapping("/reservation")
+    @PostMapping("/")
     public ResponseEntity<Reservation> createdReservation(@RequestBody Reservation reservation) {
         try {
             Reservation createdReservation = reservationService.save(reservation);
@@ -46,7 +47,7 @@ public class ReservationController {
 //        return new ResponseEntity<>(patient, HttpStatus.OK);
 //    }
 
-    @DeleteMapping("/reservation/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteRDV(@PathVariable("id") int id) {
         System.out.println(id);
         reservationService.deleteRDV(id);

@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins="http://localhost:4200/")
 @RestController
 public class PatientController {
 
@@ -30,7 +30,7 @@ public class PatientController {
     @PostMapping("/patients")
     public ResponseEntity<Patient> createPatient(@RequestBody Patient patient) {
         try {
-            Patient createdPatient = patientService.save(patient);
+            Patient createdPatient = patientService.savep(patient);
             return new ResponseEntity<Patient>(createdPatient, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -45,6 +45,10 @@ public class PatientController {
 //
 //        return new ResponseEntity<>(patient, HttpStatus.OK);
 //    }
+//@PutMapping("/patients/{id}")
+//public Patient updatePatientByID(@PathVariable(value="id") int id, @RequestBody Patient patient) {
+//    return patientService.updatePatientByID(id, patient);
+//}
 
     @DeleteMapping("/patients/{id}")
     public ResponseEntity<HttpStatus> deletePatient(@PathVariable("id") int id) {

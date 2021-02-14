@@ -10,5 +10,5 @@ public interface ReservationDetailsService {
     public Reservation findById(int id);
     public Reservation save(Reservation reservation);
     public void deleteRDV(int id);
-    //public Patient updatePatient(int id, Patient patient);
+
 }
