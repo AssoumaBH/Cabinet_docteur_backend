@@ -9,6 +9,7 @@ public interface PatientDetailsService {
     public Patient findById(int id);
     public Patient savep(Patient patient);
     public void deletePatient(int id);
+    public Patient updatePatient(int id, Patient patient);
 
 
 }
