@@ -1,8 +1,6 @@
 package com.example.cabinet_Doctor.models;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
@@ -14,6 +12,9 @@ import java.util.Set;
 @Entity
 @Table(name = "roles")
 @Data
+@NoArgsConstructor
+@RequiredArgsConstructor
+@EqualsAndHashCode(exclude = {"createdAt", "updatedAt",  "patients"})
 public class Role implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,6 +23,7 @@ public class Role implements Serializable {
 
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
+    @NonNull
     private ERole name;
 
     @Setter(value = AccessLevel.NONE)

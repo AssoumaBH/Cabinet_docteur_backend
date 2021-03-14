@@ -2,13 +2,12 @@ package com.example.cabinet_Doctor.services;
 
 import com.example.cabinet_Doctor.models.ERole;
 import com.example.cabinet_Doctor.models.Patient;
-
 import com.example.cabinet_Doctor.models.Role;
 import com.example.cabinet_Doctor.repositories.PatientRepository;
 import com.example.cabinet_Doctor.repositories.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -87,10 +86,21 @@ public class PatientService implements PatientDetailsService {
             existingPatient.setEmail(patient.getEmail());
             existingPatient.setDateNaissance(patient.getDateNaissance());
             existingPatient.setTel(patient.getTel());
-            existingPatient.setnumCNSS(patient.getnumCNSS());
+            existingPatient.setNumCNSS(patient.getNumCNSS());
 
         }
         return patientRepository.save(existingPatient);
+    }
+
+    @Transactional(readOnly = true)
+    public Patient findByEmail(String email) {
+        Patient patient = null;
+        try {
+            patient = patientRepository.findByEmail(email);
+        } catch (Exception e) {
+            throw e;
+        }
+        return patient;
     }
 }
 

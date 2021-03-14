@@ -7,4 +7,8 @@ import org.springframework.stereotype.Repository;
 public interface PatientRepository extends JpaRepository<Patient, Integer> {
 
     Patient findById(int id);
+    // return True if email already exist
+    boolean existsByEmail(String email);
+    // find user by email address
+    Patient findByEmail(String email);
 }
